@@ -36,7 +36,7 @@ if __name__ == "__main__":
 				else:
 					thisRound = 1
 					
-					# Change the 'double' boolean to trye
+					# Change the 'double' boolean to true
 					double = 1
 					
 				
