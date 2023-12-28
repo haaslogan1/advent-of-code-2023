@@ -4,10 +4,12 @@ import re
 content =  open('input.txt')
 
 
-# Create the time and dist array
-time = re.findall(r'\d+', content.readline())
-dist = re.findall(r'\d+', content.readline())
 
+# Create the time and dist array
+time = re.findall(r'\d+', content.readline().replace(' ', ''))
+dist = re.findall(r'\d+', content.readline().replace(' ', ''))
+
+print(time)
 # Create the races array from the time and dist arrays
 races = [[time[i], dist[i]] for i in range(0, len(time))]
 
