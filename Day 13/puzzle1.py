@@ -1,11 +1,16 @@
-l = [['#.##..##.', '..#.##.#.', "##......#", "##......#", "..#.##.#.", "..##..##.", "#.#.##.#."],\
-["#...##..#",\
-"#....#..#",\
-"..##..###",\
-"#####.##.",\
-"#####.##.",\
-"..##..###",\
-"#....#..#"]]
+# commented l is used for the sample
+
+# l = [['#.##..##.', '..#.##.#.', "##......#", "##......#", "..#.##.#.", "..##..##.", "#.#.##.#."],\
+# ["#...##..#",\
+# "#....#..#",\
+# "..##..###",\
+# "#####.##.",\
+# "#####.##.",\
+# "..##..###",\
+# "#....#..#"]]
+
+# split the file into a list of strings separated by each new line
+l = [x.split('\n') for x in open('input.txt').read().split('\n\n')]
 
 # initialize the count
 coutn = 0
@@ -48,59 +53,33 @@ for x in l:
 	# Check for vertical lines
 	tst = x[0]
 
+	# Iterate through each possible vertical line (len of the string - 1)
 	for y in range(1, len(tst)):
-		y = int(y)
+		
+		# if the vertical line will be in the second half of the string
 		if (y > (len(tst) / 2)):
-			print(tst[y:int(len(tst))])
-			print(tst[int((2 * (y - (int(len(tst)) / 2)))):y])
+			# split the second half of the string by the amt of chars on each side
 			if (str(tst[y:int(len(tst))])[::-1] == str(tst[int((2 * (y - (int(len(tst)) / 2)))):y])):
+				# save y as a temp num used to add to the total count
 				tot = y
+				# iterate through each string in the complete list to see if it also matches like the first line
 				for z in x:
-					print(z[y:len(tst)])
-					print(z[int((2 * (y - (len(tst) / 2)))):y])
 					if (str(z[y:len(tst)])[::-1] != str(z[int((2 * (y - (len(tst) / 2)))):y])):
 						tot = 0
 						break
 				coutn += tot
 		elif (y <= (len(tst) / 2)):
+			# split the first half of the string (or total string) by the amt of chars on each side
 			if(str(tst[0:y])[::-1] == str(tst[y:(y * 2)])):
+				# save y as a temp num used to add to the total count
 				tot = y
+				# iterate through each x in y
 				for z in x:
 					if(str(z[0:y])[::-1] != str(z[y:(y * 2)])):
 						tot = 0
 						break
 				coutn += tot
-		
-		print()
-		
-		
-# 		print(tst[0:num])
-# 		try:
-# 			if (tst[0:num] == tst[num:(2*num)]):
-# 				print(tst[0:num])
-# 				lineCnt = num
-# 				for y in x:
-# 					if (y[0:num] != y[num:(2*num)]):
-# 						lineCnt = 0
-# 						break
-# 				
-# 				coutn += lineCnt
-# 					
-# 		except: pass
-# 		
-# 		try:
-# 			if(tst[(len(tst) - 1 - num):num] == tst[((len(tst) - 1 - num) * 2):(num / 2)]):
-# 				print(tst[(len(tst) - 1 - num):num])
-# 				lineCnt = num - (len(tst) - 1 - num)
-# 				for y in x:
-# 					if (y[(len(y) - 1 - num):num] != y[((len(y) - 1 - num) * 2):(num / 2)]):
-# 						lineCnt = 0
-# 						break
-# 				
-# 				coutn += lineCnt
-# 				
-# 		except: pass
-# 		print()
+
 
 print(coutn)
 				
